@@ -1,0 +1,127 @@
+package COD_JAVA8;
+
+import Collection.Hashmap;
+
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
+public class All_cod {
+    public static void main(String[] args) {
+        System.out.println("11111111111111111111separate odd and even numbers11111111111111111111");
+        List<Integer> al= Arrays.asList(1,3,2,5,47,89,7,6,3,5,7);
+        Map<Boolean, List<Integer>> map=al.stream().collect(Collectors.partitioningBy(num->num%2==0));
+        System.out.println("separate odd and even numbers"+map);
+        System.out.println("22222222222222222Remove Duplicate from a list2222222222222222222222222");
+        List<Integer> al1= Arrays.asList(1,3,2,5,47,89,7,6,3,5,7,3,4,5,4,4,5);
+        List<Integer> list1=al1.stream().distinct().collect(Collectors.toList());
+        System.out.println("After removing duplicates"+list1);
+        System.out.println("3333333333333333Frequency of each character in a string3333333333333333");
+        String s="google";
+        Map<Character,Long> map1=s.chars().mapToObj(c->(char)c)
+        .collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
+        System.out.println("frequency of each character in a string"+map1);
+        System.out.println("4444444444444444444frequency of each element in an array4444444444444444");
+        List<String> list2=Arrays.asList("priya","paru","priya","bala","bala","alagu","parvathi");
+        Map<String,Long> map2=list2.stream().collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
+        System.out.println("freuency of each element in an array"+map2);
+        System.out.println("55555555555555555list of decimals in reverse order55555555555555555555");
+        List<Double> list3=Arrays.asList(10.5,12.5,71.1,5.2,3.4,7.5,1.2,5.0,2.5);
+        list3.stream().sorted(Comparator.reverseOrder()).forEach(System.out::println);
+       List<Double> al3=list3.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+      System.out.println("Sorting in reverse order"+al3);
+        System.out.println("66666666666666666666 joining strings66666666666666666666666666666666");
+        List<String> list6=Arrays.asList("LinkedIn","facebook","instagram","naukri","linkedin");
+        list6.stream().collect(Collectors.joining(",","[","]"));
+        System.out.println("joining strings"+list6);
+        System.out.println("7777777777777777777multiples of 5--77777777777777777777777777");
+        List<Integer> al7=Arrays.asList(10,20,45,20,14,25,30,8,5);
+        al7.stream().filter(x->x%5==0).forEach(System.out::println);
+        System.out.println("888888888888min and max numbers888888888888888");
+        List<Integer> al5=Arrays.asList(10,20,3,5,4,7,8,35,20,85,200);
+        Integer min=al5.stream().min(Comparator.naturalOrder()).get();
+        System.out.println("minimum element in an array is"+min);
+        Integer max=al5.stream().max(Comparator.naturalOrder()).get();
+        System.out.println("maximum element in an array is"+max);
+        System.out.println("9999999999999999merge unsorted array into sorted single array999999999");
+        int[] array1={2,1,5,7,3,10};
+        int[] array2={20,50,10,30,40};
+        int[] array3= IntStream.concat(Arrays.stream(array1),Arrays.stream(array2)).sorted().toArray();
+        System.out.println("merged array is"+Arrays.toString(array3));
+        System.out.println("101010101010merge unsorted array into sorted single array101010101010");
+        int[] array4={2,1,5,7,3,10};
+        int[] array5={20,50,10,30,40};
+        int[] array6= IntStream.concat(Arrays.stream(array4),Arrays.stream(array5)).sorted().distinct().toArray();
+        System.out.println("merged array without duplicate is"+Arrays.toString(array6));
+
+        System.out.println("11 11 11 11 11 11get maximum and minimum numbers in array11 11 11 11 11");
+        List<Integer> list11=Arrays.asList(20,3,4,8,12,45,7,40,81,21,55,60);
+        List<Integer> l11=list11.stream().sorted().limit(3).collect(Collectors.toList());
+        System.out.println("min 3 element in an array"+l11);
+        list11.stream().sorted(Comparator.reverseOrder()).limit(3).forEach(System.out::println);
+        System.out.println("12 12 12 12 two check strings anagram or not 12 12 12 12 12");
+         String s1="race";
+         String s2="care";
+          s1= Stream.of(s1.split("")).sorted().collect(Collectors.joining());
+          s2=Stream.of(s2.split("")).sorted().collect(Collectors.joining());
+          if(s1.equals(s2))
+          {
+              System.out.println("its an  anagram");
+          }
+          else {
+              System.out.println("not an anagram");
+          }
+        System.out.println("13 13 13 13 13 13 13 sum of all digits of a number   13 13 13 13 13 13 13 13");
+          int i=123456;
+          int sum=Stream.of(String.valueOf(i).split("")).collect(Collectors.summingInt(Integer::parseInt));
+        System.out.println("sum of the given value is "+sum);
+        System.out.println("14 14 14 14 14 14 14 Second largest  number in an integer array 14 14 14 14 14 14 14 14 ");
+        List<Integer> al13=Arrays.asList(12,13,14,1,2,3,5,121);
+        int list13=al13.stream().sorted(Comparator.reverseOrder()).skip(1).findFirst().get();
+        System.out.println("second largest number in an array is"+list13);
+        System.out.println("15 15 15  Given a list of strings, sort them according to increasing order of their length 15 15 15 15");
+        System.out.println("stores in different list which doesnot affect original list so that we go for collect(Collectors.toList()");
+        List<String> al15=Arrays.asList("java","c#","python","mongodb","c","c++",".net");
+        List<String> list15=al15.stream().sorted(Comparator.comparing(String::length)).collect(Collectors.toList());
+        System.out.println("chages made in different list"+list15);
+        System.out.println("store in  original list so that we go for foreach");
+        List<String> al155=Arrays.asList("java","c","c++",".net");
+        al15.stream().sorted(Comparator.comparing(String::length)).forEach(System.out::println);
+        System.out.println("15 151 15 15 15 15 15Integer Array ,sum and average of all elements 15 151 15 15 15 15");
+
+//        int[] arr={10,2,5,5,6,7,8,20};
+
+
+        String str="123";
+        int number=Integer.valueOf(str);
+        int sum1=0;
+//        while(a>0)
+//        {
+//           int rev= a%10;
+//           sum=sum+rev;
+//          a=a/10;
+//        }
+//        System.out.println("sum of number is"+sum);
+
+        while (number > 0) {
+            int digit = number % 10;
+            sum += digit;
+            number /= 10;
+        }
+
+        System.out.println("Sum of digits: " + sum);
+
+
+
+
+
+
+
+
+
+
+
+    }
+}
